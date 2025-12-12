@@ -5,9 +5,9 @@ class Character {
     this.w = w;
     this.h = h;
     this.vy = 0;
-    this.gravity = 0.4;
-    this.jumpForce = -10;
-    this.speed = 5;
+    this.gravity = 0.4; // Gravity effect
+    this.jumpForce = -10; // Jump strength
+    this.speed = 5; // Horizontal movement speed
   }
 
   draw() {
