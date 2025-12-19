@@ -10,7 +10,7 @@ class Platform {
   }
 
   draw() {
-    if (this.isBroken) return;
+    if (this.isBroken) return; // Don't draw if broken
 
     push();
     if (this.type === 1) {

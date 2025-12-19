@@ -20,10 +20,10 @@ function resetGame() {
   character = new Character(200, 400, 40, 40);// Character size 40x40
   platforms.push(new Platform(160, 500, 80, 15, 0));// Starting platform
 
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 7; i++) { // Create 7 platforms
     let px = random(0, canvasWidth - 80);//Random x position
     let py = i * 75; //Evenly spaced y position
-    let type = (random(1) < 0.2) ? 1 : (random(1) > 0.9 ? 2 : 0);
+    let type = (random(1) < 0.2) ? 1 : (random(1) > 0.9 ? 2 : 0); 
     platforms.push(new Platform(px, py, 80, 15, type));//Push platforms to array
   }
 }
@@ -67,25 +67,25 @@ function drawGame() {  // Main game loop
   text("Score: " + score, 60, 40);
 
   if (character.y < 200) {
-    let dy = 200 - character.y;
+    let dy = 200 - character.y; //Make character stay at y=200
     character.y = 200;
-    scrollOffset += dy;
-    for (let p of platforms) p.y += dy;
+    scrollOffset += dy; //Increase scroll offset
+    for (let p of platforms) p.y += dy; //Move platforms down
   }
 
   // 2. Character
   character.update();
   character.draw();
-  if (character.y > canvasHeight) state = "gameover";
+  if (character.y > canvasHeight) state = "gameover"; // Game over condition
 
   // 3. Platform
   for (let p of platforms) {
     p.update();
     p.draw();
 
-    if (!p.isBroken && character.isColliding(p)) {
+    if (!p.isBroken && character.isColliding(p)) { 
       character.jump();
-      if (p.type === 2) p.isBroken = true;
+      if (p.type === 2) p.isBroken = true; 
     }
 
     if (p.y > canvasHeight) {

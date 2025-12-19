@@ -4,17 +4,17 @@ class Character {
     this.y = y;
     this.w = w;
     this.h = h;
-    this.vy = 0;
+    this.vy = 0; // Vertical speed
     this.gravity = 0.4;
     this.jumpForce = -10;
-    this.speed = 5;
+    this.speed = 5; // Horizontal speed
   }
 
   draw() {
     push();
-    translate(this.x + this.w / 2, this.y + this.h / 2);
-    scale(this.w / 250);
-    translate(-200, -200);
+    translate(this.x + this.w / 2, this.y + this.h / 2); // Move the drawing point
+    scale(this.w / 250); // Scale to fit size
+    translate(-200, -200); // Offset to center drawing
 
     fill(255, 200, 50);
     strokeWeight(0);
@@ -58,7 +58,7 @@ class Character {
       this.x += this.speed;
     }
 
-    if (this.x > width) {
+    if (this.x > width) { 
       this.x = -this.w;
     }
     if (this.x + this.w < 0) {
@@ -68,11 +68,11 @@ class Character {
 
   isColliding(platform) {
     if (
-      this.vy > 0 &&
-      this.x + this.w > platform.x &&
-      this.x < platform.x + platform.w &&
-      this.y + this.h > platform.y &&
-      this.y + this.h < platform.y + platform.h
+      this.vy > 0 && //when falling
+      this.x + this.w > platform.x && //Right edge past the platform's left edge
+      this.x < platform.x + platform.w && //Left edge past the platform's right edge
+      this.y + this.h > platform.y && //Bottom edge past the platform's top edge
+      this.y + this.h < platform.y + platform.h  //Character above the platform's bottom edge
     ) {
       return true;
     }
